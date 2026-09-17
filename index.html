@@ -8,7 +8,7 @@
   <!-- Google Fonts: Lora (literární serif) a Plus Jakarta Sans (čistý text) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..600;1,400..600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..600;1,400..600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -19,38 +19,46 @@
           colors: {
             linen: '#F9F6F0',
             coffee: '#2C2825',
-            sage: '#7D9D8B',
-            'sage-dark': '#628070',
-            terracotta: '#C47B5D',
-            'terracotta-dark': '#AA6347',
+            sage: {
+              DEFAULT: '#7D9D8B',
+              dark: '#5D7C6B',
+              light: '#EDF3F0'
+            },
+            terracotta: {
+              DEFAULT: '#C47B5D',
+              dark: '#A65F42',
+              light: '#FAF1ED'
+            },
             muted: '#7A7571'
           },
           fontFamily: {
-            serif: ['Lora', 'serif'],
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Lora', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
           }
         }
       }
     }
   </script>
 </head>
-<body class="bg-linen text-coffee font-sans antialiased min-h-screen flex flex-col">
+<body class="bg-linen text-coffee font-sans antialiased min-h-screen flex flex-col selection:bg-sage/20 selection:text-coffee">
 
   <!-- HORNÍ LIŠTA -->
-  <header class="border-b border-stone-200/70 bg-linen/90 backdrop-blur sticky top-0 z-40">
+  <header class="border-b border-stone-200/80 bg-linen/95 backdrop-blur sticky top-0 z-40">
     <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
       <a href="#" class="flex flex-col">
-        <span class="font-serif text-2xl font-medium tracking-tight text-coffee">KŘEHCÍ</span>
-        <span class="text-xs text-muted font-sans tracking-wide">z online světa na kafe</span>
+        <span class="font-serif text-2xl font-bold tracking-tight text-coffee">KŘEHCÍ</span>
+        <span class="text-xs text-muted tracking-wide">most od technologie k člověku</span>
       </a>
 
-      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-stone-700">
-        <a href="#temata" class="hover:text-terracotta transition">Kde to bolí</a>
-        <a href="#lide" class="hover:text-terracotta transition">Lidé na kafe</a>
-        <a href="#chat-section" class="hover:text-terracotta transition">Tichý chat</a>
+      <nav class="hidden lg:flex items-center space-x-6 text-sm font-medium text-stone-700">
+        <a href="#cesta-pomoci" class="hover:text-terracotta transition">Cesta pomoci</a>
+        <a href="#pro-kneze" class="hover:text-terracotta transition">Pro kněze</a>
+        <a href="#otevrena-fara" class="hover:text-terracotta transition">Fara & Klášter</a>
+        <a href="#ekumena-a-svoboda" class="hover:text-terracotta transition">Svoboda & Ekumena</a>
+        <a href="#ziva-vira" class="hover:text-terracotta transition">Živá víra & Akce</a>
       </nav>
 
-      <button onclick="openModal('sos-modal')" class="text-xs md:text-sm font-medium px-4 py-2 rounded-full border border-red-200 bg-red-50/60 text-red-800 hover:bg-red-100 transition">
+      <button onclick="openModal('sos-modal')" class="text-xs font-semibold px-4 py-2.5 rounded-full border border-red-200 bg-red-50 text-red-800 hover:bg-red-100 transition shadow-2xs">
         Potřebuji pomoc teď hned (SOS)
       </button>
     </div>
@@ -60,125 +68,223 @@
   <main class="flex-grow">
     
     <!-- HERO SEKCE -->
-    <section class="max-w-4xl mx-auto px-6 pt-20 pb-16 text-center">
-      <span class="inline-block text-xs uppercase tracking-widest text-sage-dark font-semibold mb-4 bg-sage/10 px-3 py-1 rounded-full">
-        Bezpečný a otevřený prostor
+    <section class="max-w-4xl mx-auto px-6 pt-16 pb-16 text-center">
+      <span class="inline-block text-xs uppercase tracking-widest text-sage-dark font-semibold mb-4 bg-sage/10 px-3.5 py-1 rounded-full">
+        Hledáme cesty, které spojují, ne ty, které rozdělují
       </span>
+      
       <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl text-coffee leading-tight mb-6">
-        Nemusíš být v pořádku.<br>
-        <span class="italic font-normal text-stone-600">Nemusíš nic předstírat.</span>
+        Tady nemusíš nic předstírat.<br>
+        <span class="italic font-normal text-stone-600 text-3xl sm:text-4xl md:text-5xl">Můžeš prostě jen být.</span>
       </h1>
+      
       <p class="text-lg sm:text-xl text-stone-700 max-w-2xl mx-auto leading-relaxed mb-10 font-light">
-        Ať už tě svírá úzkost, ticho rozpadajícího se vztahu, vyčerpání z péče o někoho blízkého nebo pocit, že Bůh někam zmizel — nejsi v tom sám. Tady tě nikdo nesoudí.
+        Každý člověk má právo na lásku, bezpečí a důstojný život. Ať už tě svírá úzkost, ticho rozpadajícího se vztahu, vyčerpání ze samoty nebo otázky, na které se bojíš zeptat v kostele — nejsi v tom sám.
       </p>
 
       <!-- DVA HLAVNÍ ROZCESTNÍKY -->
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-lg mx-auto">
-        <button onclick="scrollToChat()" class="w-full sm:w-1/2 px-6 py-4 rounded-2xl bg-sage text-white font-medium shadow-sm hover:bg-sage-dark transition flex flex-col items-center">
-          <span class="text-base font-semibold">Chci si jen psát</span>
-          <span class="text-xs text-white/80 font-light mt-0.5">Zcela anonymní chat</span>
+        <button onclick="scrollToElement('chat-section')" class="w-full sm:w-1/2 px-6 py-4 rounded-2xl bg-sage text-white font-medium shadow-sm hover:bg-sage-dark transition flex flex-col items-center">
+          <span class="text-base font-semibold">Tichý anonymní chat</span>
+          <span class="text-xs text-white/80 font-light mt-0.5">Když potřebuješ bezpečí domova</span>
         </button>
         <a href="#lide" class="w-full sm:w-1/2 px-6 py-4 rounded-2xl bg-terracotta text-white font-medium shadow-sm hover:bg-terracotta-dark transition flex flex-col items-center">
-          <span class="text-base font-semibold">Rád bych zašel na kafe</span>
+          <span class="text-base font-semibold">Pojďme na kafe</span>
           <span class="text-xs text-white/80 font-light mt-0.5">Nezávazné lidské setkání</span>
         </a>
       </div>
     </section>
 
-    <!-- ROZCESTNÍK ŽIVOTNÍCH SITUACÍ -->
-    <section id="temata" class="max-w-6xl mx-auto px-6 py-12 border-t border-stone-200">
-      <div class="text-center mb-10">
-        <h2 class="font-serif text-2xl sm:text-3xl text-coffee mb-2">Kde tě právě teď tlačí bota?</h2>
-        <p class="text-stone-600 text-sm">Vyber si oblast a najdi pochopení bez laciných rad a výčitek.</p>
+    <!-- SEKCE: JAK FUNGUJE POMOC (LIDÉ, PÉČE, NÁSLEDNÁ POMOC) -->
+    <section id="cesta-pomoci" class="max-w-6xl mx-auto px-6 py-14 border-t border-stone-200">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs uppercase tracking-widest text-sage-dark font-semibold">Most od technologie k člověku</span>
+        <h2 class="font-serif text-3xl text-coffee mt-2 mb-3">Tři kroky, jak nezůstat sám</h2>
+        <p class="text-stone-600 text-sm">Respektujeme tvé tempo i svobodu. Nikam tě netlačíme a nezkoušíme tě.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Karta 1 -->
-        <div class="bg-white p-6 rounded-2xl border border-stone-200/80 shadow-sm flex flex-col justify-between hover:border-sage transition">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-sage/10 text-sage-dark flex items-center justify-center text-lg mb-4">🌿</div>
-            <h3 class="font-serif text-lg font-semibold mb-2">Když bolí duše</h3>
-            <p class="text-sm text-stone-600 leading-relaxed">Úzkosti, vyčerpání, temnota deprese. Místo, kde duševní nemoc není vnímána jako hřích ani slabost víry.</p>
-          </div>
-          <button onclick="selectTopic('duse')" class="mt-6 text-xs font-semibold text-sage-dark flex items-center hover:underline">
-            Chci si o tom promluvit →
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Krok 1 -->
+        <div class="bg-white p-6 rounded-3xl border border-stone-200 shadow-2xs flex flex-col">
+          <div class="w-10 h-10 rounded-xl bg-sage-light text-sage-dark flex items-center justify-center font-bold text-sm mb-4">1</div>
+          <h3 class="font-serif text-lg font-bold mb-2">Anonymní bezpečí</h3>
+          <p class="text-sm text-stone-600 leading-relaxed mb-4">
+            Můžeš psát v noci z postele. Nikdo neuvidí tvou tvář, jméno ani adresu. Stačí napsat jedinou větu o tom, co tě trápí. Na druhé straně sedí někdo, kdo naslouchá bez odsuzování.
+          </p>
+          <a href="#chat-section" class="mt-auto text-xs font-semibold text-sage-dark hover:underline">Otevřít tichý chat →</a>
+        </div>
+
+        <!-- Krok 2 -->
+        <div class="bg-white p-6 rounded-3xl border border-stone-200 shadow-2xs flex flex-col">
+          <div class="w-10 h-10 rounded-xl bg-terracotta-light text-terracotta flex items-center justify-center font-bold text-sm mb-4">2</div>
+          <h3 class="font-serif text-lg font-bold mb-2">Kafe s někým, kdo to zažil</h3>
+          <p class="text-sm text-stone-600 leading-relaxed mb-4">
+            Největší úlevu přináší rozhovor s člověkem, který stál na stejném dně. Manželé v krizi, lidé s úzkostí, rodiny s hendikepovaným dítětem. Setkání v parku nebo v kavárně jako dva rovnocenní lidé.
+          </p>
+          <a href="#lide" class="mt-auto text-xs font-semibold text-terracotta hover:underline">Vybrat si člověka na kávu →</a>
+        </div>
+
+        <!-- Krok 3 -->
+        <div class="bg-white p-6 rounded-3xl border border-stone-200 shadow-2xs flex flex-col">
+          <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-800 flex items-center justify-center font-bold text-sm mb-4">3</div>
+          <h3 class="font-serif text-lg font-bold mb-2">Následná péče a kotva</h3>
+          <p class="text-sm text-stone-600 leading-relaxed mb-4">
+            Nenecháme tě v tom viset. Zprostředkujeme citlivé, věřící psychology a terapeuty, otevřená společenství, kde tě přijmou, nebo duchovní, kteří umí naslouchat bez kázání.
+          </p>
+          <span class="mt-auto text-xs font-semibold text-stone-500">Dlouhodobé mosty pomoci</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEKCE: PRO KNĚZE (POMOC, SAMOTA, VEDENÍ) -->
+    <section id="pro-kneze" class="max-w-6xl mx-auto px-6 py-16 border-t border-stone-200 bg-stone-100/50 rounded-3xl my-8">
+      <div class="max-w-3xl mx-auto text-center mb-10">
+        <span class="text-xs uppercase tracking-widest text-terracotta font-semibold">I pastýř bývá unavený</span>
+        <h2 class="font-serif text-3xl sm:text-4xl text-coffee mt-2 mb-3">Pro kněze: Prostor, kde nemusíš být silný</h2>
+        <p class="text-stone-600 leading-relaxed text-sm sm:text-base">
+          Kněz není stroj na svátosti ani neomylný manažer. Dobře víme, jak těžká je samota na velkých farách, tíha odpovědnosti za farníky, tlak na výkon a chvíle, kdy docházejí lidské i duchovní síly.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-2xs">
+          <div class="text-2xl mb-3">🍲</div>
+          <h3 class="font-serif text-lg font-bold mb-2">Pozvání na kafe nebo nedělní oběd v rodině</h3>
+          <p class="text-sm text-stone-600 leading-relaxed mb-4">
+            Nabízíme otevřené dveře našich domovů. Místo, kde tě nikdo nebude žádat o vyřízení farních papírů ani tě soudit za únavu. Jen obyčejná teplá večeře, dětský smích, káva a přátelský rozhovor mezi rovnými lidmi.
+          </p>
+          <button onclick="openInviteModal('Pozvání kněze k rodinnému stolu')" class="text-xs font-semibold text-terracotta hover:underline">
+            Chci nabídnout otevřený stůl knězi / Jsem kněz a rád přijmu pozvání →
           </button>
         </div>
 
-        <!-- Karta 2 -->
-        <div class="bg-white p-6 rounded-2xl border border-stone-200/80 shadow-sm flex flex-col justify-between hover:border-terracotta transition">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-amber-50 text-terracotta flex items-center justify-center text-lg mb-4">🍂</div>
-            <h3 class="font-serif text-lg font-semibold mb-2">Když se láme vztah</h3>
-            <p class="text-sm text-stone-600 leading-relaxed">Krize v manželství, odcizení a samota ve dvou. Opora od lidí, kteří si prošli stejným dnem a nezlomilo je to.</p>
-          </div>
-          <button onclick="selectTopic('vztahy')" class="mt-6 text-xs font-semibold text-terracotta flex items-center hover:underline">
-            Najít doprovázející pár →
-          </button>
-        </div>
-
-        <!-- Karta 3 -->
-        <div class="bg-white p-6 rounded-2xl border border-stone-200/80 shadow-sm flex flex-col justify-between hover:border-stone-400 transition">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-stone-100 text-stone-700 flex items-center justify-center text-lg mb-4">🌱</div>
-            <h3 class="font-serif text-lg font-semibold mb-2">Když přišel hendikep</h3>
-            <p class="text-sm text-stone-600 leading-relaxed">Pro rodiny dětí se speciálními potřebami a pečující. Bez lítosti shora — pouze skutečné porozumění a sdílení tíže.</p>
-          </div>
-          <button onclick="selectTopic('hendikep')" class="mt-6 text-xs font-semibold text-stone-700 flex items-center hover:underline">
-            Propojit se s rodinou →
-          </button>
-        </div>
-
-        <!-- Karta 4 -->
-        <div class="bg-white p-6 rounded-2xl border border-stone-200/80 shadow-sm flex flex-col justify-between hover:border-stone-400 transition">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-800 flex items-center justify-center text-lg mb-4">🕊️</div>
-            <h3 class="font-serif text-lg font-semibold mb-2">Když Bůh mlčí</h3>
-            <p class="text-sm text-stone-600 leading-relaxed">Zklamání z církve, pochybnosti o víře i hluboké otázky. Otevřený dialog bez strašení a poučování.</p>
-          </div>
-          <button onclick="selectTopic('vira')" class="mt-6 text-xs font-semibold text-stone-700 flex items-center hover:underline">
-            Hledat otevřený rozhovor →
+        <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-2xs">
+          <div class="text-2xl mb-3">🛡️</div>
+          <h3 class="font-serif text-lg font-bold mb-2">Tichá důvěrná opora a psychohygiena</h3>
+          <p class="text-sm text-stone-600 leading-relaxed mb-4">
+            Procházíš vyhořením, samotou nebo krizí vedení? Můžeš se anonymně spojit s křesťanskými terapeuty, supervizory nebo rodinami, které ti nabídnou diskrétní bezpečí bez rizika pomluv a klerikálního tlaku.
+          </p>
+          <button onclick="scrollToElement('chat-section')" class="text-xs font-semibold text-sage-dark hover:underline">
+            Napsat důvěrnou zprávu v chatu →
           </button>
         </div>
       </div>
     </section>
 
-    <!-- SEKCE: ANONYMNÍ CHAT -->
-    <section id="chat-section" class="max-w-3xl mx-auto px-6 py-12">
-      <div class="bg-white rounded-3xl border border-stone-200 shadow-sm overflow-hidden flex flex-col">
-        <!-- Záhlaví chatu -->
-        <div class="bg-stone-50 border-b border-stone-200 px-6 py-4 flex items-center justify-between">
-          <div class="flex items-center space-x-3">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            <div>
-              <h3 class="text-sm font-semibold text-coffee">Anonymní tichý rozhovor</h3>
-              <p class="text-xs text-muted">Tvůj dočasný klíč: <span id="user-token" class="font-mono text-stone-800 font-medium">#nadeje-841</span></p>
+    <!-- SEKCE: OTEVŘENÁ FARA & OTEVŘENÝ KLÁŠTER -->
+    <section id="otevrena-fara" class="max-w-6xl mx-auto px-6 py-14 border-t border-stone-200">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="text-xs uppercase tracking-widest text-sage-dark font-semibold">Zboření zbytečného ostychu</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-coffee mt-2 mb-4">Otevřená fara a klášter</h2>
+          <p class="text-stone-600 leading-relaxed text-sm sm:text-base mb-4">
+            Mnoho lidí má strach zaklepat na faru. Bojí se, že budou vypadat hloupě, že neznají správná slova nebo že je někdo vyžene.
+          </p>
+          <p class="text-stone-600 leading-relaxed text-sm sm:text-base mb-6">
+            Chceme, aby fary a kláštery byly tím, čím mají být: otevřenými domy pokoje. Rádi ti zprostředkujeme **nezávazné setkání s knězem nebo řeholní sestrou** na neutrální půdě nebo v klidné zahradě. Můžeš se zeptat na cokoliv – od architektury přes historii až po ty nejhlubší lidské otázky.
+          </p>
+          <div class="space-y-3">
+            <div class="flex items-center space-x-3 text-sm text-stone-700">
+              <span class="text-sage-dark font-bold">✓</span>
+              <span>Žádné zkoušení z katechismu ani nátlak</span>
+            </div>
+            <div class="flex items-center space-x-3 text-sm text-stone-700">
+              <span class="text-sage-dark font-bold">✓</span>
+              <span>Možnost prohlídky kláštera či farní zahrady v klidu</span>
+            </div>
+            <div class="flex items-center space-x-3 text-sm text-stone-700">
+              <span class="text-sage-dark font-bold">✓</span>
+              <span>Rozhovor s lidmi, kteří zasvětili život službě a modlitbě</span>
             </div>
           </div>
-          <button onclick="clearChat()" class="text-xs text-muted hover:text-red-700 transition">Smazat historii</button>
         </div>
 
-        <!-- Okno zpráv -->
-        <div id="chat-window" class="p-6 space-y-4 max-h-96 overflow-y-auto bg-stone-50/30">
-          <div class="flex items-start space-x-3">
-            <div class="w-8 h-8 rounded-full bg-sage/20 text-sage-dark flex-shrink-0 flex items-center justify-center text-xs font-serif font-bold">K</div>
-            <div class="bg-white border border-stone-200 rounded-2xl rounded-tl-none p-4 max-w-md text-sm text-stone-700 shadow-sm leading-relaxed">
-              Ahoj. Můžeš napsat cokoliv — klidně jen jednu větu o tom, jak se teď cítíš. Nikdo tě tu nesoudí, nehodnotí a na druhé straně je člověk, který má čas ti naslouchat.
-            </div>
-          </div>
-        </div>
-
-        <!-- Vstup pro psaní -->
-        <form onsubmit="handleChatSubmit(event)" class="p-4 bg-white border-t border-stone-200 flex items-center gap-3">
-          <input id="chat-input" type="text" placeholder="Napiš, co máš právě teď na srdci..." class="flex-grow text-sm px-4 py-3 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-sage">
-          <button type="submit" class="px-5 py-3 bg-sage hover:bg-sage-dark text-white rounded-xl text-sm font-medium transition shadow-sm">
-            Odeslat
+        <div class="bg-white p-8 rounded-3xl border border-stone-200 shadow-2xs">
+          <h3 class="font-serif text-xl font-bold mb-3">Chceš se potkat s knězem či řeholnicí?</h3>
+          <p class="text-sm text-stone-600 mb-6">Napiš nám město nebo region a my ti domluvíme kávu s člověkem, který tě rád a beze spěchu vyslechne.</p>
+          <button onclick="openInviteModal('Setkání na faře / v klášteře')" class="w-full py-3.5 bg-sage hover:bg-sage-dark text-white rounded-xl font-medium text-sm transition shadow-xs">
+            Domluvit nezávazné setkání
           </button>
-        </form>
+        </div>
       </div>
-      <p class="text-center text-xs text-muted mt-3">
-        Vaše zpráva je anonymní. Pokud jste v akutním ohrožení života, využijte prosím tlačítko SOS v horní liště.
-      </p>
+    </section>
+
+    <!-- SEKCE: EKUMENA, SVOBODA A BOŘENÍ KLIŠÉ -->
+    <section id="ekumena-a-svoboda" class="max-w-6xl mx-auto px-6 py-16 border-t border-stone-200">
+      <div class="max-w-2xl mx-auto text-center mb-12">
+        <span class="text-xs uppercase tracking-widest text-terracotta font-semibold">Svoboda rozumu a srdce</span>
+        <h2 class="font-serif text-3xl sm:text-4xl text-coffee mt-2 mb-3">Co nás spojuje a kde je pravda</h2>
+        <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+          Křesťanství v sobě nese obrovský dar svobody. Odmítáme strach, dezinformace i náboženská klišé, která lidem svazují křídla.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Ekumenické okénko -->
+        <div class="bg-white p-7 rounded-3xl border border-stone-200 shadow-2xs">
+          <div class="w-10 h-10 rounded-xl bg-amber-50 text-terracotta flex items-center justify-center text-lg mb-4">🤝</div>
+          <h3 class="font-serif text-xl font-bold mb-2">Ekumenické okénko: Skutečná jednota</h3>
+          <p class="text-sm text-stone-600 leading-relaxed mb-4">
+            Neřešíme zdi mezi katolickou, evangelickou, husitskou či jinou církví. Spojuje nás to nejpodstatnější: Kristus, společný křest, láska k bližnímu a úcta k člověku. Skutečná ekumena není o kompromisech, ale o bratrství, které spolu sedí u jednoho stolu a společně pomáhá potřebným.
+          </p>
+          <div class="text-xs font-semibold text-terracotta">Hledáme to, co nás spojuje, ne to, co nás dělí.</div>
+        </div>
+
+        <!-- Svoboda bez klišé -->
+        <div class="bg-white p-7 rounded-3xl border border-stone-200 shadow-2xs">
+          <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-800 flex items-center justify-center text-lg mb-4">🕊️</div>
+          <h3 class="font-serif text-xl font-bold mb-2">Svoboda od náboženských klišé</h3>
+          <ul class="text-sm text-stone-600 space-y-2.5">
+            <li><strong>Klišé:</strong> „Když máš deprese, málo se modlíš.“<br><span class="text-stone-500">→ Pravda: Duševní nemoc je nemoc těla a mozku. Vyhledat psychiatra je čin moudrosti, ne hřích.</span></li>
+            <li><strong>Klišé:</strong> „V církvi nesmíš mít pochybnosti.“<br><span class="text-stone-500">→ Pravda: Pochybnost je zdravá součást víry. Bůh se nebojí tvých otázek.</span></li>
+            <li><strong>Klišé:</strong> „Církev je jen pro dokonalé rodiny.“<br><span class="text-stone-500">→ Pravda: Ježíš trávil čas se zraněnými a unavenými. Láska a odpuštění jsou pro každého.</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SEKCE: ŽIVÁ VÍRA & AKCE, OBNOVY -->
+    <section id="ziva-vira" class="max-w-6xl mx-auto px-6 py-14 border-t border-stone-200">
+      <div class="max-w-2xl mx-auto text-center mb-12">
+        <span class="text-xs uppercase tracking-widest text-sage-dark font-semibold">Láska proměněná ve skutky</span>
+        <h2 class="font-serif text-3xl sm:text-4xl text-coffee mt-2 mb-3">Živá víra a kam vyrazit</h2>
+        <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+          Víra nejsou jen odříkané formule. Je to opravdový život, kde si lidé odpouštějí, pomáhají nést břemena a dokážou se spolu smát i plakat.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-2xs">
+          <h3 class="font-serif font-bold text-lg mb-2">Duchovní obnovy pro manžele</h3>
+          <p class="text-xs text-stone-500 mb-3">Víkendy pro načerpání a uzdravení vztahu</p>
+          <p class="text-sm text-stone-600 leading-relaxed mb-4">
+            Čas jen pro vás dva. Přednášky, klid, procházky, možnost popovídat si se zkušenými páry bez stresu z dětí a práce.
+          </p>
+          <button onclick="openInviteModal('Informace o manželských obnovách')" class="text-xs font-semibold text-terracotta hover:underline">Zjistit termíny a doporučení →</button>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-2xs">
+          <h3 class="font-serif font-bold text-lg mb-2">Ticho v klášteře (Dny ztišení)</h3>
+          <p class="text-xs text-stone-500 mb-3">Pro vyčerpané, pracující i pečující</p>
+          <p class="text-sm text-stone-600 leading-relaxed mb-4">
+            Několik dní v klášterním pokoji bez telefonu a hluku. Spánek, dobré jídlo, příroda a prostor uslyšet svůj vlastní dech i tichý Boží hlas.
+          </p>
+          <button onclick="openInviteModal('Doporučení klášterního pobytu')" class="text-xs font-semibold text-sage-dark hover:underline">Kde najít bezpečný klášter →</button>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-2xs">
+          <h3 class="font-serif font-bold text-lg mb-2">Rodiny s hendikepem pospolu</h3>
+          <p class="text-xs text-stone-500 mb-3">Pobytová setkání s asistencí</p>
+          <p class="text-sm text-stone-600 leading-relaxed mb-4">
+            Místo, kde se na vaše dítě nikdo nedívá divně. Společné sdílení s rodiči, kteří řeší stejné diagnózy a únavu, s podporou dobrovolníků.
+          </p>
+          <button onclick="openInviteModal('Setkání rodin s hendikepem')" class="text-xs font-semibold text-stone-700 hover:underline">Propojit se s komunitou →</button>
+        </div>
+
+      </div>
     </section>
 
     <!-- SEKCE: LIDÉ NA KAFE -->
@@ -268,6 +374,41 @@
       </div>
     </section>
 
+    <!-- SEKCE: ANONYMNÍ CHAT -->
+    <section id="chat-section" class="max-w-3xl mx-auto px-6 py-14">
+      <div class="bg-white rounded-3xl border border-stone-200 shadow-sm overflow-hidden flex flex-col">
+        <div class="bg-stone-50 border-b border-stone-200 px-6 py-4 flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <div>
+              <h3 class="text-sm font-semibold text-coffee">Anonymní tichý rozhovor</h3>
+              <p class="text-xs text-muted">Tvůj dočasný klíč: <span id="user-token" class="font-mono text-stone-800 font-medium">#nadeje-714</span></p>
+            </div>
+          </div>
+          <button onclick="clearChat()" class="text-xs text-muted hover:text-red-700 transition">Smazat historii</button>
+        </div>
+
+        <div id="chat-window" class="p-6 space-y-4 max-h-96 overflow-y-auto bg-stone-50/30">
+          <div class="flex items-start space-x-3">
+            <div class="w-8 h-8 rounded-full bg-sage/20 text-sage-dark flex-shrink-0 flex items-center justify-center text-xs font-serif font-bold">K</div>
+            <div class="bg-white border border-stone-200 rounded-2xl rounded-tl-none p-4 max-w-md text-sm text-stone-700 shadow-sm leading-relaxed">
+              Ahoj. Můžeš napsat cokoliv — klidně jen jednu větu o tom, jak se teď cítíš. Nikdo tě tu nesoudí, nehodnotí a na druhé straně je člověk, který má čas ti naslouchat.
+            </div>
+          </div>
+        </div>
+
+        <form onsubmit="handleChatSubmit(event)" class="p-4 bg-white border-t border-stone-200 flex items-center gap-3">
+          <input id="chat-input" type="text" placeholder="Napiš, co máš právě teď na srdci..." class="flex-grow text-sm px-4 py-3 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-sage">
+          <button type="submit" class="px-5 py-3 bg-sage hover:bg-sage-dark text-white rounded-xl text-sm font-medium transition shadow-sm">
+            Odeslat
+          </button>
+        </form>
+      </div>
+      <p class="text-center text-xs text-muted mt-3">
+        Zpráva je anonymní a nikam se neukládá vaše identita.
+      </p>
+    </section>
+
   </main>
 
   <!-- PATA STRÁNKY -->
@@ -275,11 +416,11 @@
     <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 gap-4">
       <div>
         <p class="font-serif text-sm font-semibold text-coffee">KŘEHCÍ</p>
-        <p class="mt-1">Iniciativa pro lidskost, doprovázení a svobodu v církvi.</p>
+        <p class="mt-1">Iniciativa pro lidskost, doprovázení a svobodu v církvi i společnosti.</p>
       </div>
       <div class="text-center sm:text-right">
-        <p>Projekt je bezplatný a nezávislý.</p>
-        <p class="mt-1">Respektujeme vaše soukromí a nezaznamenáváme žádné osobní údaje.</p>
+        <p>Projekt je bezplatný, nezávislý a chrání lidskou důstojnost.</p>
+        <p class="mt-1">Hledáme cesty, které nás spojují.</p>
       </div>
     </div>
   </footer>
@@ -289,7 +430,7 @@
     <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-xl relative">
       <button onclick="closeModal('sos-modal')" class="absolute top-5 right-5 text-stone-400 hover:text-stone-700 text-lg">✕</button>
       <h3 class="font-serif text-xl font-bold text-red-800 mb-2">Potřebujete akutní pomoc?</h3>
-      <p class="text-sm text-stone-600 mb-6">Pokud procházíte nesnesitelnou krizí nebo máte myšlenky na ublížení si, neváhejte se obrátit na bezplatné nonstop odborné linky:</p>
+      <p class="text-sm text-stone-600 mb-6">Pokud procházíte nesnesitelnou krizí, neváhejte se obrátit na bezplatné nonstop odborné linky:</p>
       
       <div class="space-y-3 mb-6">
         <div class="p-3 bg-stone-50 rounded-xl border border-stone-200">
@@ -310,29 +451,29 @@
     </div>
   </div>
 
-  <!-- MODAL: POZVÁNÍ NA KAFE -->
+  <!-- MODAL: FORMULÁŘ NA SETKÁNÍ -->
   <div id="invite-modal" class="fixed inset-0 bg-stone-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-xl relative">
       <button onclick="closeModal('invite-modal')" class="absolute top-5 right-5 text-stone-400 hover:text-stone-700 text-lg">✕</button>
       <h3 class="font-serif text-xl font-bold text-coffee mb-1">Nezávazné setkání</h3>
-      <p id="invite-target" class="text-sm text-terracotta font-medium mb-4">Pozvánka na kafe</p>
+      <p id="invite-target" class="text-sm text-terracotta font-medium mb-4">Pozvánka</p>
       
       <form onsubmit="handleInviteSubmit(event)" class="space-y-4 text-sm">
         <div>
-          <label class="block text-stone-700 font-medium mb-1">Jak ti máme říkat? (stačí křestní jméno či přezdívka)</label>
+          <label class="block text-stone-700 font-medium mb-1">Jak ti máme říkat? (křestní jméno či přezdívka)</label>
           <input type="text" required class="w-full p-3 bg-stone-50 border border-stone-200 rounded-xl focus:border-terracotta focus:outline-none" placeholder="Např. David">
         </div>
         <div>
-          <label class="block text-stone-700 font-medium mb-1">Tvůj e-mail nebo telefon (pro domluvu místa a času)</label>
+          <label class="block text-stone-700 font-medium mb-1">Tvůj e-mail nebo telefon (pro domluvu)</label>
           <input type="text" required class="w-full p-3 bg-stone-50 border border-stone-200 rounded-xl focus:border-terracotta focus:outline-none" placeholder="david@email.cz nebo 777 ...">
         </div>
         <div>
-          <label class="block text-stone-700 font-medium mb-1">Pár slov o tom, co prožíváš (nepovinné)</label>
-          <textarea rows="3" class="w-full p-3 bg-stone-50 border border-stone-200 rounded-xl focus:border-terracotta focus:outline-none" placeholder="O čem by sis rád popovídal..."></textarea>
+          <label class="block text-stone-700 font-medium mb-1">O čem by sis rád popovídal (nepovinné)</label>
+          <textarea rows="3" class="w-full p-3 bg-stone-50 border border-stone-200 rounded-xl focus:border-terracotta focus:outline-none" placeholder="Napiš pár slov o tom, co prožíváš..."></textarea>
         </div>
         
         <button type="submit" class="w-full py-3 bg-terracotta hover:bg-terracotta-dark text-white font-medium rounded-xl transition">
-          Odeslat nezávaznou pozvánku
+          Odeslat nezávazně
         </button>
       </form>
     </div>
@@ -340,18 +481,8 @@
 
   <!-- JAVASCRIPT LOGIKA -->
   <script>
-    function scrollToChat() {
-      document.getElementById('chat-section').scrollIntoView({ behavior: 'smooth' });
-      document.getElementById('chat-input').focus();
-    }
-
-    function selectTopic(topic) {
-      scrollToChat();
-      const input = document.getElementById('chat-input');
-      if (topic === 'duse') input.value = 'Ahoj, procházím teď těžkým psychickým obdobím a potřebuji si o tom napsat...';
-      if (topic === 'vztahy') input.value = 'Dobrý den, řešíme v manželství krizi a nevím, jak dál...';
-      if (topic === 'hendikep') input.value = 'Dobrý den, máme v rodině dítě se znevýhodněním a cítíme velké vyčerpání...';
-      if (topic === 'vira') input.value = 'Ahoj, mám v sobě spoustu pochybností a zranění z církve...';
+    function scrollToElement(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
     }
 
     function handleChatSubmit(e) {
@@ -374,14 +505,14 @@
       input.value = '';
       chatWindow.scrollTop = chatWindow.scrollHeight;
 
-      // 2. Simulace odpovědi po 1.2 vteřině
+      // 2. Simulace odpovědi po chvilce
       setTimeout(() => {
         const replyBubble = document.createElement('div');
         replyBubble.className = 'flex items-start space-x-3';
         replyBubble.innerHTML = `
           <div class="w-8 h-8 rounded-full bg-sage/20 text-sage-dark flex-shrink-0 flex items-center justify-center text-xs font-serif font-bold">K</div>
           <div class="bg-white border border-stone-200 rounded-2xl rounded-tl-none p-4 max-w-md text-sm text-stone-700 shadow-sm leading-relaxed">
-            Děkuji za zprávu a důvěru. Tvůj anonymní kód je uložený. Zprávu jsme bezpečně předali průvodci a brzy se ti zde ozveme. Nejsi v tom sám.
+            Děkuji za zprávu a důvěru. Zprávu jsme v tichosti přijali. Brzy se ti zde ozveme. Nejsi v tom sám.
           </div>
         `;
         chatWindow.appendChild(replyBubble);
@@ -390,7 +521,7 @@
     }
 
     function clearChat() {
-      if (confirm("Opravdu chcete vymazat celou anonymní konverzaci z tohoto prohlížeče?")) {
+      if (confirm("Opravdu chcete smazat historii tohoto rozhovoru?")) {
         const chatWindow = document.getElementById('chat-window');
         chatWindow.innerHTML = `
           <div class="flex items-start space-x-3">
@@ -412,13 +543,13 @@
     }
 
     function openInviteModal(targetName) {
-      document.getElementById('invite-target').textContent = 'Pozvánka pro: ' + targetName;
+      document.getElementById('invite-target').textContent = 'Oblast: ' + targetName;
       openModal('invite-modal');
     }
 
     function handleInviteSubmit(e) {
       e.preventDefault();
-      alert('Děkujeme. Vaše pozvánka byla odeslána. Dotyčný člověk se vám ozve na uvedený kontakt s návrhem klidného místa.');
+      alert('Děkujeme. Vaše zpráva byla odeslána. Brzy se vám ozveme s návrhem klidného setkání.');
       closeModal('invite-modal');
     }
 
